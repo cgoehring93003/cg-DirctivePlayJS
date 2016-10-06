@@ -1,0 +1,17 @@
+<html ng-app="myApp">
+<head>
+	<title>listDirectives.html</title>
+	<script  type="text/JavaScript" src='..\..\Scripts\angular-1.4.6\angular.js'></script>
+	
+	<script  type="text/JavaScript" src='listDirectives.js'></script>
+		
+		
+</head>
+<body ng-controller='listController'>
+<p ng-repeat="tweet in data">
+  @{{tweet.author}}: {{tweet.text}}
+ 
+</p>
+
+</body>
+</html>

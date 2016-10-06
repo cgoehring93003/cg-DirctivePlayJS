@@ -1,0 +1,154 @@
+<html ng-app="myApp">
+<head>
+	<title>listDirectives.html</title>
+
+	<link rel="stylesheet" href="..\..\fonts\font-awesome-4.6.3\css\font-awesome.min.css" />	
+	<link rel="stylesheet" href="..\..\Scripts\angular-tooltips\dist\angular-tooltips.min.css" />		
+	
+	
+	<link rel="stylesheet/less" type="text/css" href="css\style.less" />
+
+<script   src="http://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+
+	
+	<script src="..\..\Scripts\less\dist\less.js" type="text/javascript"></script>
+	<!-- <script  type="text/JavaScript" src='..\..\Scripts\angular-1.4.6\angular.js'></script>
+	-->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.11/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.11/angular-animate.js"></script>
+ 
+	<script  type="text/JavaScript" src='..\..\Scripts\angular-tooltips\dist\angular-tooltips.min.js'></script>
+	<script  type="text/JavaScript" src='components\SupportViaAngular.js'></script>		
+	<script  type="text/JavaScript" src='data\RecordTypes.js'></script>	
+	
+	<script  type="text/JavaScript" src='app\app.js'></script>	
+
+	<script  type="text/JavaScript" src='data\addressData.js'></script>
+	
+	<script  type="text/JavaScript" src='components\SortClauseBuilderComponent.js'></script>	
+	<script  type="text/JavaScript" src='app\formDirectives.js'></script>		
+	
+	<script  type="text/JavaScript" src='app\formController.js'></script>	
+	
+	
+</head>
+<body >
+
+	<form class='inputForm' name="addressForm" ng-controller='formController as fc' novalidate>
+		<fieldset  class='inputFormFieldset>
+			<legend class='inputFormLegend' >Addresses of the Stars</legend>
+			
+			<div class='inputGroup'>
+				<label>First Name:</label>
+				<input type='text' name='firstName' ng-model='fc.record.firstName' required />
+					<i ng-show='addressForm.firstName.$touched && !addressForm.firstName.$valid' class="fa fa-thumbs-down fa-1x"></i>
+			</div>
+			<div class='inputGroup'>
+				<label>Last Name:</label>
+				<input type='text' name='lastName' ng-model='fc.record.lastName' required />
+					<i ng-show='addressForm.lastName.$touched && !addressForm.lastName.$valid' class="fa fa-thumbs-down fa-1x"></i>				
+			</div>	
+			
+			<div class='inputGroup'>
+				<label>Address:</label>
+				<input type='text' name='address' ng-model='fc.record.address' required />
+					<i ng-show='addressForm.address.$touched && !addressForm.address.$valid' class="fa fa-thumbs-down fa-1x"></i>				
+			</div>
+
+			<div class='inputGroup'>
+				<label>City:</label>
+				<input type='text' name='city' ng-model='fc.record.city' required/>
+					<i ng-show='addressForm.city.$touched && !addressForm.city.$valid' class="fa fa-thumbs-down fa-1x"></i>				
+			</div>
+			
+			<div class='inputGroup'>
+				<label>State:</label>
+				<input type='text' name='state' ng-model='fc.record.state' required />
+					<i ng-show='addressForm.state.$touched && !addressForm.state.$valid' class="fa fa-thumbs-down fa-1x"></i>				
+			</div>	
+			
+			<div class='inputGroup'>
+				<label>Zip:</label>
+				<input type='text' name='zip' ng-model='fc.record.zip' required />
+				<i ng-show='addressForm.zip.$touched && !addressForm.zip.$valid' class="fa fa-thumbs-down fa-1x"></i>
+			</div>
+			
+			<br />
+			<div style="text-align:center;">
+			
+				<a class='iconButton' href='' ng-click='fc.previous()'><i tooltips tooltip-template="Back up one record" class="fa fa-hand-o-left fa-2x"  ></i> </a>
+				<button style='margin: 10px;' ng-click='fc.newRecord()' value'new' tooltips tooltip-template="Create new record"  >new</button>	
+				<input type='submit' style='margin: 10px;' ng-click='fc.save()' value'save' tooltips tooltip-template="Save record"  />	
+				<a class='iconButton' href='' ng-click='fc.next()' ><i  tooltips tooltip-template="Move forward one record" class="fa fa-hand-o-right fa-2x"></i> </a>
+				
+			</div>
+			<div class='recordCounter' >
+				<p style='padding:10px;' >Record: {{recno + 1}} of {{data.length}}</p>
+			</div>			
+			
+			
+			<!-- start of builder demo -->			
+			<input id="orderClause" type="hidden" value="">
+
+			<div style="border:thin black solid;  margin-left: 10px; padding-left: 5px; padding-right: 5px; background: lightblue; font-size: xx-small;">
+
+			<table style="width: 300px; border-spacing: 4px;">
+
+
+					<tr>
+						<td class="fmtleft">Sort Order:</td>
+						<td class="fmtright">			
+							<div sort-clause-builder="SortColumns2" pickername="picker1" sortlevs='5'
+								 my-text="hello {{ bar }}"
+								 my-two-way-bind="foo" my-one-way-bind="bar"
+								 sortcols="">
+
+							</div>
+
+						</td>
+					</tr>
+
+					<tr>
+						<td colspan="2">
+							<button name='bgetSortOrderClause' id='bgetSortOrderClause' ng-click="getSortOrderClause()">getSortOrderClause</button>	
+							<button name='bgetViaRestang' id='bgetViaRestang' ng-click="getViaRestang()">getViaRestang</button>	
+							<input type="submit" value="SaveYYY" id="saveyyy" />
+							<button id="shoparammodal" ng-click="fc.showparm()">showparm modal</button>
+				<button name='bshowparm' id='bshowparmmodal' ng.click="fc.showparm()">bshowparmmodal</button>
+							
+						</td>
+					</tr>
+
+
+					<tr>
+						<td class="fmtleft">Paginated:</td>
+						<td class="fmtright">
+							<input type="checkbox" id="inpaginate" name="inpaginate" ng-checked="(paginate === 1)" />
+						</td>
+					</tr>
+
+
+				</table>
+
+
+				
+			</div>
+			<!-- end of builder demo -->
+			
+			
+			
+			<code>addressForm.lastName.$valid = {{addressForm.lastName.$valid}}</code><br>
+			<code>addressForm.lastName.$error = {{addressForm.lastName.$error}}</code><br>
+			<code>addressForm.$valid = {{addressForm.$valid}}</code><br>
+			<code>addressForm.$error.required = {{!!addressForm.$error.required}}</code><br>
+
+			
+			
+			<div rn-stepper></div>
+			
+			
+		</fieldset>		
+	</form>
+
+</body>
+</html>
