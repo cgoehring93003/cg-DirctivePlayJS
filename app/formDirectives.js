@@ -1,5 +1,5 @@
 	
-	myApp.directive('rnStepper', function() {
+myApp.directive('rnStepper', function() {
     return {
         restrict: 'AE',
         scope: {},
@@ -23,56 +23,56 @@
 
 
 
-    myApp.directive("sortClauseBuilder", function ($compile) {
-        return {
+myApp.directive("sortClauseBuilder", function ($compile) {
+	return {
 
-            restrict: "A",
-            scope: false,  // Allows writing to controller variable SortColumns.
-            compile: function (element, attrs) {  // Here, scope needs no $ because any name would suffice.
+		restrict: "A",
+		scope: false,  // Allows writing to controller variable SortColumns.
+		compile: function (element, attrs) {  // Here, scope needs no $ because any name would suffice.
 
-                var aasortlevs = attrs.sortlevs;		// good
+			var aasortlevs = attrs.sortlevs;		// good
 
-                //  Below would be the link function
-                return function ($scope, $element, $attrs) {
+			//  Below would be the link function
+			return function ($scope, $element, $attrs) {
 
-                    var dattrscnt = $attrs.Length;
+				var dattrscnt = $attrs.Length;
 
-                    console.log(' sortClauseBuilder:  compile:  ')
+				console.log(' sortClauseBuilder:  compile:  ')
 
-                    var sortcols = $attrs["sortcols"];
-                    $scope.sortlevs = $attrs["sortlevs"];
-                    var sortlevsXX = $attrs["sortlevs"];
-                    $scope.pickername = $attrs["pickername"];
-                    $scope.orderClause = 'oder';
-
-
-                    if ((sortcols != null) && (sortcols != ''))
-                    {
-                        console.log('compile: sortcols != null')
-                        sortcolsArray = sortcols.split('.');
-                    }
-                    else
-                    {
-                        console.log('compile: sortcols == null')
-                        sortcolsArray = recordTypeSortChoices["Addresses of the Stars"];
-                    }
-
-                    $scope.SortColumns = sortcolsArray;
+				var sortcols = $attrs["sortcols"];
+				$scope.sortlevs = $attrs["sortlevs"];
+				var sortlevsXX = $attrs["sortlevs"];
+				$scope.pickername = $attrs["pickername"];
+				$scope.orderClause = 'oder';
 
 
-                    if (angular.isArray(sortcolsArray)) {
+				if ((sortcols != null) && (sortcols != ''))
+				{
+					console.log('compile: sortcols != null')
+					sortcolsArray = sortcols.split('.');
+				}
+				else
+				{
+					console.log('compile: sortcols == null')
+					sortcolsArray = recordTypeSortChoices["Addresses of the Stars"];
+				}
 
-                        var newcontent1 = makesortpick(sortcolsArray, $scope.pickername, sortlevsXX);
-                        var newcontent = $compile(newcontent1)($scope);
+				$scope.SortColumns = sortcolsArray;
 
-                        element.append(newcontent);
-                    }
 
-                }
-            }
+				if (angular.isArray(sortcolsArray)) {
 
-        }
-    })
+					var newcontent1 = makesortpick(sortcolsArray, $scope.pickername, sortlevsXX);
+					var newcontent = $compile(newcontent1)($scope);
+
+					element.append(newcontent);
+				}
+
+			}
+		}
+
+	}
+});
 
 	
 	

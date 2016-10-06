@@ -16,20 +16,14 @@
 	-->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.11/angular.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.11/angular-animate.js"></script>
- 
 	<script  type="text/JavaScript" src='..\..\Scripts\angular-tooltips\dist\angular-tooltips.min.js'></script>
 	<script  type="text/JavaScript" src='components\SupportViaAngular.js'></script>		
-	<script  type="text/JavaScript" src='data\RecordTypes.js'></script>	
-	
+	<script  type="text/JavaScript" src='data\RecordTypes.js'></script>		
 	<script  type="text/JavaScript" src='app\app.js'></script>	
-
 	<script  type="text/JavaScript" src='data\addressData.js'></script>
-	
 	<script  type="text/JavaScript" src='components\SortClauseBuilderComponent.js'></script>	
 	<script  type="text/JavaScript" src='app\formDirectives.js'></script>		
-	
 	<script  type="text/JavaScript" src='app\formController.js'></script>	
-	
 	
 </head>
 <body >
@@ -92,9 +86,7 @@
 
 			<div style="border:thin black solid;  margin-left: 10px; padding-left: 5px; padding-right: 5px; background: lightblue; font-size: xx-small;">
 
-			<table style="width: 300px; border-spacing: 4px;">
-
-
+				<table style="width: 300px; border-spacing: 4px;">
 					<tr>
 						<td class="fmtleft">Sort Order:</td>
 						<td class="fmtright">			
@@ -114,7 +106,7 @@
 							<button name='bgetViaRestang' id='bgetViaRestang' ng-click="getViaRestang()">getViaRestang</button>	
 							<input type="submit" value="SaveYYY" id="saveyyy" />
 							<button id="shoparammodal" ng-click="fc.showparm()">showparm modal</button>
-				<button name='bshowparm' id='bshowparmmodal' ng.click="fc.showparm()">bshowparmmodal</button>
+							<button name='bshowparm' id='bshowparmmodal' ng.click="fc.showparm()">bshowparmmodal</button>
 							
 						</td>
 					</tr>
@@ -129,24 +121,17 @@
 
 
 				</table>
-
-
 				
 			</div>
 			<!-- end of builder demo -->
-			
-			
 			
 			<code>addressForm.lastName.$valid = {{addressForm.lastName.$valid}}</code><br>
 			<code>addressForm.lastName.$error = {{addressForm.lastName.$error}}</code><br>
 			<code>addressForm.$valid = {{addressForm.$valid}}</code><br>
 			<code>addressForm.$error.required = {{!!addressForm.$error.required}}</code><br>
-
-			
-			
+	
 			<div rn-stepper></div>
-			
-			
+
 		</fieldset>		
 	</form>
 
