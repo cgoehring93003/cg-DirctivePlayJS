@@ -15,7 +15,7 @@
 @stepper-border-width: 1px;
 @stepper-button-bg: #4D4DFF;
 @stepper-value-bg: #eee;
-
+@overallWidth: 525px;
 
 body{
 	font-family: Verdana, Geneva, sans-serif;
@@ -67,7 +67,7 @@ div[rn-stepper] {
 
 .inputForm {
  	border-style: solid;
-	width:400px;
+	width: @overallWidth;
 	margin-top: 30px;
 	margin-left: auto; 
 	margin-right: auto;	
@@ -76,7 +76,7 @@ div[rn-stepper] {
 }
 
 .inputFormFieldset{
-	width: 400px;	
+	width: @overallWidth;	
 }
 
 .inputForm.ng-invalid {

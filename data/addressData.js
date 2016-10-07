@@ -12,7 +12,7 @@ var xdata =
   
   {
     "firstName" : "Kim",
-    "lastName" : "Kard...",	
+    "lastName" : "Kardashian",	
     "address" : "1001 Hollywood Blvd.",
     "city" : "Beverly Hills",
     "state" : "CA",	

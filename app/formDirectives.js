@@ -1,27 +1,3 @@
-	
-myApp.directive('rnStepper', function() {
-    return {
-        restrict: 'AE',
-        scope: {},
-        template: '<button ng-click="decrement()">-</button>' +
-                  '<div>{{ value }}</div>' +
-                  '<button ng-click="increment()">+</button>',
-        link: function(scope, iElement, iAttrs, ngModelController) {
-
-            // update the value when user clicks the buttons
-            scope.decrement = function() {
-                updateModel(-1);
-            };
-            scope.increment = function() {
-                updateModel(+1);
-            };
-        }
-    };
-	
-	
-});
-
-
 
 myApp.directive("sortClauseBuilder", function ($compile) {
 	return {
