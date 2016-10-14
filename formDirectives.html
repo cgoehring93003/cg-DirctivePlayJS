@@ -2,6 +2,9 @@
 <head>
 	<title>listDirectives.html</title>
 
+	<link rel="stylesheet" href="..\..\Scripts\bootstrap-3.3.7-dist\css\bootstrap.min.css" />	
+	<link src="..\..\Scripts\bootstrap-3.3.7-dist\js\bootstrap.min.js" />		
+	
 	<link rel="stylesheet" href="..\..\fonts\font-awesome-4.6.3\css\font-awesome.min.css" />	
 	<link rel="stylesheet" href="..\..\Scripts\angular-tooltips\dist\angular-tooltips.min.css" />		
 	
@@ -16,11 +19,13 @@
 	-->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.11/angular.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.11/angular-animate.js"></script>
+	<script src="..\..\Scripts\ui-router-0.2.15\release\angular-ui-router.min.js"></script>	
+	
 	<script  type="text/JavaScript" src='..\..\Scripts\angular-tooltips\dist\angular-tooltips.min.js'></script>
 	<script  type="text/JavaScript" src='..\..\Scripts\restangular\restangular.js'></script>	
 	<script  type="text/JavaScript" src='..\..\Scripts\toaster\toastr.min.js'></script>	
 	
-	<script  type="text/JavaScript" src='components\SupportViaAngular.js'></script>		
+	<!-- <script  type="text/JavaScript" src='components\SupportViaAngular.js'></script>	-->	
 	<script  type="text/JavaScript" src='data\RecordTypes.js'></script>		
 	<script  type="text/JavaScript" src='app\app.js'></script>	
 	<script  type="text/JavaScript" src='components\SortBuilderController.js'></script>		
@@ -35,10 +40,25 @@
 </head>
 <body >
 
+<div class="jumbotron text-center">
+    <h2>Example angular spa</h2>
+    <p>Some tests</p>  
+
+    <button ui-sref="home" class="btn btn-primary">home</button>
+    <button ui-sref="editAddress({id: 1})" class="btn btn-primary">edit 1</button>	
+    <button ui-sref="editAddress({id: 2})" class="btn btn-primary">edit 2</button>	
+    <button ui-sref="editAddress({id: 3})" class="btn btn-primary">edit 3</button>
+    <button ui-sref="editAddress({id: star.recno})" class="btn btn-primary">edit 3</button>
+
+	
+    <button ui-sref="about" class="btn btn-danger">about</button>
+</div>
+
 	<form class='inputForm' name="addressForm" ng-controller='formController as fc' novalidate>
+		<h4 class='inputFormSubTitle' >Addresses of the Stars</h4>
+	
 		<fieldset  class='inputFormFieldset>
-			<legend class='inputFormLegend' >Addresses of the Stars</legend>
-			
+
 			<div id='centerableTopPart'>
 				<div class='inputGroup'>
 					<label>First Name:</label>
@@ -59,8 +79,14 @@
 
 				<div class='inputGroup'>
 					<label>City:</label>
-					<input type='text' name='city' ng-model='fc.record.city' required/>
-						<i ng-show='addressForm.city.$touched && !addressForm.city.$valid' class="fa fa-thumbs-down fa-1x"></i>				
+					<!-- works	-->	
+					<input type='text' name='city' ng-model='fc.record.city' required ng-pattern='/^Beverly/' />				
+					
+					<!-- <input type='text' simple-pattern-validator pattern="/^Beverly.*/" name="city"
+						ng-model='fc.record.city' required /> 	-->	
+						<i ng-show='addressForm.city.$touched && !addressForm.city.$valid' class="fa fa-thumbs-down fa-1x"></i>	
+					<span ng-show="addressForm.city.$error.pattern">Not a valid name </span>
+	
 				</div>
 				
 				<div class='inputGroup'>
@@ -80,9 +106,13 @@
 			<div style="text-align:center;">
 			
 				<a class='iconButton' href='' ng-click='fc.previous()'><i tooltips tooltip-template="Back up one record" class="fa fa-hand-o-left fa-2x"  ></i> </a>
-				<button style='margin: 10px;' ng-click='fc.newRecord()' value'new' tooltips tooltip-template="Create new record"  >new</button>	
-				<input type='submit' style='margin: 10px;' ng-click='fc.save()' value'save' tooltips tooltip-template="Save record"  />	
+				<a class='iconButton' href='' ng-click='fc.newRecord()'><i tooltips tooltip-template="Create new record" class="glyphicon glyphicon-plus fa-2x"  ></i> </a>
+				<a class='iconButton' href='' ng-click='fc.save()' ><i tooltips tooltip-template="Save record" class="glyphicon glyphicon-save fa-2x"  ></i> </a>	
+				<a class='iconButton' href='' ng-click='fc.deleteRecord()' ><i tooltips tooltip-template="Delete record" class="glyphicon glyphicon-trash fa-2x"  ></i> </a>				
+				
 				<a class='iconButton' href='' ng-click='fc.next()' ><i  tooltips tooltip-template="Move forward one record" class="fa fa-hand-o-right fa-2x"></i> </a>
+				
+				
 				
 			</div>
 			<div class='recordCounter' >
@@ -95,31 +125,49 @@
 
 			<div style="border:thin black solid;  margin-left: 10px; padding-left: 5px; padding-right: 5px; background: lightblue; font-size: xx-small;">
 
-				<table style="width: 300px; border-spacing: 4px;">
+				<table style="width: 310px; border-spacing: 4px;">
 					<tr>
 						<td class="fmtleft">Sort Order:</td>
-						<td class="fmtright">			<!--   -->
-							<div id='mySortPicker' sort-clause-builder="SortColumns2" pickername="picker1" sortlevs='5'
-								 my-text="hello {{ bar }}"
-								 my-two-way-bind="foo" my-one-way-bind="bar"
-								 sortcols="aa,bb,cc,dd">
-
+						<td class="fmtright" style='padding: 8px;'>			
+							<div id='mySortPicker' sort-clause-builder="SortColumns2" 
+								tablename='Addresses of the Stars'
+								pickername="picker1" sortlevs='5' 
+								 sortcols="" style='padding: 8px;'
+                                             selections="lastName, city"
+                                             set-fn="setDirectiveFn(theDirFn)"><!-- Check this out, it's tricky  -->
 							</div>
 
 						</td>
 					</tr>
 
 					<tr> <!-- -->
-						<td colspan="2" ng-controller='SortBuilderController as SortBuilder'   >
-							<button name='bgetSortOrderClause' id='bgetSortOrderClause' ng-click="getSortOrderClause()">getSortOrderClause</button>	
-							<button name='bgetViaRestang' id='bgetViaRestang' ng-click="getViaRestang()">getViaRestang</button>	
-							<input type="submit" value="SaveYYY" id="saveyyy" />
+						<td colspan="2" ng-controller='SortBuilderController as SortBuilder' >
+							<button name='bgetSortOrderClause' id='bgetSortOrderClause' ng-click="SortBuilder.getSortOrderClause()">getSortOrderClause</button>	
+							<button name='bgetSortOrderClauseFromModel' id='bgetSortOrderClauseFromModel' ng-click="SortBuilder.getSortOrderClauseFromModel()">getSortOrderClauseFromModel</button>	
 							<button id="shoparammodal" ng-click="fc.showparm()">showparm modal</button>
 							<button name='bshowparm' id='bshowparmmodal' ng.click="fc.showparm()">bshowparmmodal</button>
 							
+							
+							<button name='btheDirFn' id='btheDirFn' ng-click="SortBuilder.theDirFn()">theDirFn</button>	
+							<button name='bsetFn' id='bsetFn' ng-click="SortBuilder.setFn()">setFn</button>		
+							<button name='bset-fn' id='bset-fn' ng-click="SortBuilder.set-fn()">set-fn</button>								
+							<button name='bdirectiveFn' id='bdirectiveFn' ng-click="SortBuilder.directiveFn()">directiveFn</button>	
+							<button name='bexternalCall' id='bexternalCall' ng-click="SortBuilder.externalCall()">externalCall</button>	
+														
+							
+							<button name='bfctheDirFn' id='bfctheDirFn' ng-click="fc.theDirFn()">theDirFn</button>	
+							<button name='bfcsetFn' id='bfcsetFn' ng-click="fc.setFn()">setFn</button>		
+							<button name='bfcset-fn' id='bfcset-fn' ng-click="fc.set-fn()">set-fn</button>								
+							<button name='bfcdirectiveFn' id='bfcdirectiveFn' ng-click="fc.directiveFn()">directiveFn</button>	
+							<button name='bfcexternalCall' id='bfcexternalCall' ng-click="fc.externalCall()">externalCall</button>	
+														
 						</td>
 					</tr>
+					<tr>
+					<td colspan="2" >
 
+					</td>
+					</tr>
 
 					<tr>
 						<td class="fmtleft">Paginated:</td>
@@ -130,17 +178,82 @@
 
 
 				</table>
+				<div style='border-style; dotted;'>
+					<w3-test-directive></w3-test-directive>				
+				</div>
 				
 			</div>
 			<!-- end of builder demo -->
-			
-			<code>addressForm.lastName.$valid = {{addressForm.lastName.$valid}}</code><br>
-			<code>addressForm.lastName.$error = {{addressForm.lastName.$error}}</code><br>
-			<code>addressForm.$valid = {{addressForm.$valid}}</code><br>
-			<code>addressForm.$error.required = {{!!addressForm.$error.required}}</code><br>
+			<div style='margin: 10px'>			
+				<code>addressForm.firstName.$valid = {{addressForm.firstName.$valid}}</code><br>
+				<code>addressForm.firstName.$error = {{addressForm.firstName.$error}}</code><br>
+				
+				<code>addressForm.lastName.$valid = {{addressForm.lastName.$valid}}</code><br>
+				<code>addressForm.lastName.$error = {{addressForm.lastName.$error}}</code><br>	
+				
+				<code>addressForm.address.$valid = {{addressForm.address.$valid}}</code><br>
+				<code>addressForm.address.$error = {{addressForm.address.$error}}</code><br>
+				
+				<code>addressForm.city.$valid = {{addressForm.city.$valid}}</code><br>
+				<code>addressForm.city.$error = {{addressForm.city.$error}}</code><br>	
+				<code>addressForm.city.$error.patern = {{addressForm.city.$error.pattern}}</code><br>		
+				
+				<code>addressForm.state.$valid = {{addressForm.state.$valid}}</code><br>
+				<code>addressForm.state.$error = {{addressForm.state.$error}}</code><br>
 
+				<code>addressForm.zip.$valid = {{addressForm.zip.$valid}}</code><br>
+				<code>addressForm.zip.$error = {{addressForm.zip.$error}}</code><br>
+				
+				<code>addressForm.buffer.$valid = {{addressForm.buffer.$valid}}</code><br>				
+				<code>addressForm.buffer.$error = {{addressForm.buffer.$error}}</code><br>				
+				<code>addressForm.$valid = {{addressForm.$valid}}</code><br>
+				<code>addressForm.$error.required = {{!!addressForm.$error.required}}</code><br>
+			</div>
+		
+			
 		</fieldset>		
 	</form>
+      <div ui-view></div>
+	  
+	    
+	  <p>Plain ng-repeat</p>	  
+		<div class='datagrid'>
+			<table width="1200px" ng-controller='formController as fmc'>
+
+				<tr>
+
+					<th>recno</th>
+					<th>firstName</th>
+					<th>lastName</th>
+					<th>address</th>
+					<th>city</th>
+					<th>state</th>				
+					<th>zip</th>				
+					
+				</tr>
+
+
+				<tr ng-repeat="star in fmc.data" ng-class-even="'evenrow'" ng-class-odd="'oddrow'">
+
+					<td><a ui-sref="/editAddress({id: star.recno})">{{star.recno}}</a></td>				
+					<td>{{star.firstName}}</td>
+					<td>{{star.lastName}}</td>
+					<td>{{star.address}}</td>
+					<td>{{star.city}}</td>
+					<td>{{star.state}}</td>			
+					<td>{{star.zip}}</td>	
+					
+				</tr>
+			</table>
+		</div>
+		
+		<p>myTable directive</p>
+		<div class='datagrid' ng-controller="formController as fmc">		
+			<div my-table></div>
+		</div>
+
+        <input class="btn btn-danger btn-lg" type="button" ng-click="getAllInvoices()" value="getAllInvoices"  />
+
 
 </body>
 </html>

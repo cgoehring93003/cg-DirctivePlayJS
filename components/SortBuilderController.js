@@ -1,7 +1,8 @@
 
 
 
-myApp.controller('SortBuilderController', ['$http', function ($http) {
+
+function SortBuilderController($http) {
 
 	var SortBuilder = this;	
 		
@@ -136,7 +137,8 @@ myApp.controller('SortBuilderController', ['$http', function ($http) {
     }
 
     SortBuilder.processUrl = function () {
-
+        console.log('processUrl: ');
+	
         // Get current url
         var oldurlstr = window.location;
 
@@ -223,7 +225,7 @@ myApp.controller('SortBuilderController', ['$http', function ($http) {
         }
 
         if (parastr.indexOf('&&') > -1)
-            consol.log('processUrl: && detected in new url: ' + parastr);
+            console.log('processUrl: && detected in new url: ' + parastr);
 
 
         console.log('processUrl: parastr: ' + parastr);
@@ -256,7 +258,11 @@ myApp.controller('SortBuilderController', ['$http', function ($http) {
     // Called from getSortOrderClause
     // Assumes one is selected.
     SortBuilder.getSortLevel = function (rootElementName) {
-
+		if(rootElementName == null)
+			alert('getSortLevel: ' + rootElementName + ' is null');
+		
+        console.log('getSortLevel: rootElementName: ' + rootElementName);
+	
         var questvalue = 'row' + rootElementName;
         var radiosInRow = document.getElementsByName(questvalue);
         if ((radiosInRow === undefined) || (radiosInRow.length == 0))
@@ -273,7 +279,8 @@ myApp.controller('SortBuilderController', ['$http', function ($http) {
     }
 
     SortBuilder.getSortWithDirectional = function (rootElementName) {
-
+        console.log('getSortWithDirectional: rootElementName: ' + rootElementName);
+	
         var whereItem = '';
 
         var questvalue = 'cbrow' + rootElementName;
@@ -292,17 +299,18 @@ myApp.controller('SortBuilderController', ['$http', function ($http) {
 
     // Currrently, only used on prefs screen.
     SortBuilder.getSortOrderClause = function () {
+        console.log('getSortOrderClause: ');		
+		
         var whereItem = '';
         var sl = '';
         var wi = '';
         var corrected = 0;
-        console.log('getSortOrderClause');
 
         //TODO: obsolete?
         var picks = [this.SortColumns.length];
 
-        //if ((picks == null) || (picks == 0))
-        //    alert('getSortOrderClause  : issue with SortColumns');
+        if ((picks == null) || (picks == 0))
+            console.log('getSortOrderClause  : issue with SortColumns zzz9null or 0)');
 
 
         // Zero out each array
@@ -385,37 +393,28 @@ myApp.controller('SortBuilderController', ['$http', function ($http) {
     }
 
 
+		
+		
+		
+		
+		
     // Muct be called early.
     // this is for hidden html element method method
     SortBuilder.getPrefsx2 = function () {
 
         SortBuilder.prefparms  = {};
-
-        SortBuilder.prefparms.ApiForDataR = $('#myApiForDataR').val();
-        SortBuilder.prefparms.MatchingController = $('#myMatchingController').val();
-        SortBuilder.prefparms.paginate = $('#mypaginate').val();
-        SortBuilder.prefparms.orderby = $('#myorderby').val();
-                    //prefXR2.startpage = $('#mystartpage').val();
-        var startpageT = $('#mystartpage').val();
-        SortBuilder.prefparms.startpage = parseInt(startpageT);  //0;
-                     //prefXR2.pagelength = $('#mypagelength').val();
-        var pagelengthT = $('#mypagelength').val();
-        SortBuilder.prefparms.pagelength = parseInt(pagelengthT); //10;
-
-                    //prefXR2.pagegroupno = $('#mypagegroupno').val();
-        var pagegroupnoT = $('#mypagegroupno').val();
-        SortBuilder.prefparms.pagegroupno = parseInt(pagegroupnoT);  //0;
-                    //prefXR2.pagegroupsize = $('#mypagegroupsize').val();
-        var pagegroupsizeT = $('#mypagegroupsize').val();
-        SortBuilder.prefparms.pagegroupsize = parseInt(pagegroupsizeT);  //7;
-                    //prefXR2.pageno = $('#mypageno').val();
-        var pagenoT = $('#mypageno').val();
-        SortBuilder.prefparms.pageno = parseInt(pagenoT);  //0;
-
-        SortBuilder.prefparms.criteria = $('#mycriteria').val();
-        SortBuilder.prefparms.pagelinks = $('#mypagelinks').val();
-        SortBuilder.prefparms.PostbackPrefix = $('#myPostbackPrefix').val();
-        SortBuilder.prefparms.ProjectServerUrl = $('#myProjectServerUrl').val();
+        SortBuilder.prefparms.ApiForDataR = 'API';
+        SortBuilder.prefparms.paginate = true;
+        SortBuilder.prefparms.orderby = '';
+        SortBuilder.prefparms.startpage = 1;
+        SortBuilder.prefparms.pagelength= 50;
+        SortBuilder.prefparms.pagegroupno = 1;
+        SortBuilder.prefparms.pagegroupsize = 10;
+        SortBuilder.prefparms.pageno = 1;
+        SortBuilder.prefparms.criteria = '';
+        SortBuilder.prefparms.pagelinks = '';
+        SortBuilder.prefparms.PostbackPrefix = '';
+		
 
         console.log('getPrefsx2: ----------------------------------');
 
@@ -437,13 +436,16 @@ myApp.controller('SortBuilderController', ['$http', function ($http) {
         return;
     }
 
-    // Moved to directive
-    //SortBuilder.doSetDefaults();
 
     // This must be called to initialiaze prefparms
     SortBuilder.getPrefsx2();
 
-    console.log('AuxController: end of controller AuxController');
-}]);  // End of SortBuilderController
+    console.log('SortBuilderController: end of controller SortBuilderController');
+}  // End of SortBuilderController
+
+myApp.controller('SortBuilderController', ['$http', SortBuilderController]);
+
+
+
 
 

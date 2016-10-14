@@ -1,0 +1,33 @@
+﻿
+<table class="details">
+	<tr>
+		<td></td>
+		<td><a href="" ng-click="back()">Back</a></td>
+	</tr>
+	<tr>
+		<th>Title</th>
+		<td>{{movie.title}}</td>
+	</tr>
+	<tr>
+		<th>Year</th>
+		<td>{{movie.year}}</td>
+	</tr>
+	<tr>
+		<th>Runtime</th>
+		<td>{{movie.runtime}} minutes</td>
+	</tr>
+	<tr>
+		<th>Rating</th>
+		<td><span class="icon {{movie.ratings.audience_rating.toLowerCase()}}" /> {{movie.ratings.audience_score}}%</td>
+	</tr>
+	<tr>
+		<th>Cast</th>
+		<td>
+			<ul class="list-unstyled">
+				<li ng-repeat="actor in movie.abridged_cast">{{actor.name}}</li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+

@@ -1,0 +1,63 @@
+﻿
+
+#ajaxLoader {
+	width:40px;
+	height:40px;
+	position:fixed;
+	z-index:1000;
+	border:1px solid;
+	background:white;
+}
+
+#ajaxLoader img {
+	position:absolute;
+	top: 0px;
+	right:0px;
+	bottom:0px;
+	left:0px;
+	margin:auto;
+	opacity:.5;
+}
+
+/* fix the cursor that for some reason is showing default instead of pointer */
+.pagination > li > a:hover,
+.pagination > .active > a:hover {
+	cursor:pointer;
+}
+
+.form-group>label {margin-right:5px;}
+
+table.details th, 
+table.details td  {
+	padding:10px 20px;;	
+	text-align:left;
+	vertical-align:top;
+}
+	
+table#movieList>tbody>tr>td {
+	height:4em;
+}
+
+table>tbody>tr#footer>td:hover {
+	background-color:white;
+}
+
+header {text-align:center;}
+
+/* rotten/fresh icons */
+.icon {
+	display: inline-block;
+	vertical-align: text-bottom;
+	background: transparent url('../images/icons-v2.png') no-repeat -312px -160px;
+	width: 16px;
+	height: 16px;
+	background-position: -272px -144px;
+}
+
+.upright {
+	background-position: -256px -144px;
+}
+
+.rotten {
+	background-position: -272px -144px;
+}

@@ -1,19 +1,31 @@
 
-	function formController(){
+	function formController($stateParams, $location, recno){
 		var vm = this;	
+		
 		vm.rating = 42; 			
 		vm.recno = 0;	
 		vm.record = {};		
 		vm.data = xdata;
+	
 	
 		vm.showparm = function() {
 			console.log('showparm called');
 		};	
 	
 		vm.save = function() {
+			
 			vm.load();
 		};		
 		
+		vm.editRecord = function(id) {
+			vm.recno = id;
+			vm.load();
+		};	
+		
+		vm.deleteRecord = function() {
+			
+			vm.load();
+		};			
 		vm.previous = function() {
 			if(vm.recno > 0) 
 				vm.recno--;
@@ -49,11 +61,24 @@
 		
 		vm.load = function() {
 			vm.record = xdata[vm.recno];	
-		};		
+		};	
+		
+		vm.loadById = function(id) {
+			for(var i = 0; i < xdata.length; i++) {
+				if(i === xdata[i].recno) {
+					
+					vm.record = xdata[i];
+					return;
+				}
+					
+			}
+			return;
+		};
+		
 		vm.record = xdata[0];	
 		
     }
-'rnStepper', 
+//'rnStepper', 
    myApp.controller('formController', [formController]);
 
  

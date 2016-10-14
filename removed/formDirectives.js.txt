@@ -1,0 +1,27 @@
+<br /><table style="width: 1200px;" >
+
+            <tr>
+
+                <th>recno</th>
+                <th>firstName</th>
+                <th>lastName</th>
+                <th>address</th>
+                <th>city</th>
+                <th>state</th>				
+                <th>zip</th>				
+				
+            </tr>
+
+
+            <tr ng-repeat="star in fmc.data" >
+
+                <td><a ng-href="/Invoice?id={{star.recno}}">{{star.recno}}</a></td>				
+                <td>{{star.firstName}}</td>
+                <td>{{star.lastName}}</td>
+                <td>{{star.address}}</td>
+                <td>{{star.city}}</td>
+                <td>{{star.state}}</td>			
+	            <td>{{star.zip}}</td>	
+				
+            </tr>
+        </table>'

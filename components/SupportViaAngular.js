@@ -5,8 +5,6 @@
 var app = angular.module('projectsApp', ['restangular']);
 
 app.constant('apiUrl', 'http://bigdell/WebApi2ProjectService');
-
-
 app.constant('domain', 'http://derlist.com')
 app.constant('api', '/some/api/info')
 app.service('urls', function (domain, api) { this.apiUrl = domain + api; });
@@ -19,35 +17,27 @@ app.directive("sortClauseBuilder", function ($compile) {
         restrict: "AE",
         //scope: false,  //TODO: re-visit  Allows writing to controller variable SortColumns.
         // Excellent article http://www.undefinednull.com/2014/02/11/mastering-the-scope-of-a-directive-in-angularjs/
-        scope: {   // Caused "issue with SortColumns" error 
+        /*scope: {   // Caused "issue with SortColumns" error 
             SortColumns: '@',  //TODO:  These added 2016-01-02  
             selections: '@',  // '=' is for two way
             FormBacker: '@',  // '@' is one way
             setFn: '&'  // '&' is for function reference
-        },
+        }, */
         //controller: 'AuxController',  // This sets where backing data for ngModel is stored 
         compile: function (element, attrs) {  // Here, scope needs no $ because any name would suffice.
-
-
-
 
             //  Below would be the link function - convention is to use scope instad of $scope because position is what is important here.
             return function (scope, $element, $attrs) {
 
-                console.log('sortClauseBuilder:  compile:  myCurrentController: ' + myCurrentController)
+                console.log('sortClauseBuilder:  link:  myCurrentController: ' + myCurrentController)
 
                 // Control element attributes
                 var sortcols = $attrs["sortcols"];
                 scope.sortlevs = $attrs["sortlevs"];
                 scope.pickername = $attrs["pickername"];
-
                 scope.selections = $attrs["selections"];
-
-
                 scope.forwardUrl = 'http://forwardUrl';
                 scope.backUrl = 'http://backUrl';
-
-
 
                 if ((sortcols == null) || (sortcols == ''))
                     console.log('compile: sortcols == null')
@@ -56,10 +46,13 @@ app.directive("sortClauseBuilder", function ($compile) {
 
                 scope.FormBacker = [];
 
+				// What anm I doing here ?				
                 scope.externalCall = function () {  // updateMap
-                    alert('inside externalCall()');
+                    console.log('externalCall: ');				
+                    alert('externalCall: ');
                 }
 
+				// What anm I doing here ?
                 scope.setFn({ theDirFn: scope.externalCall });
 
                 //
@@ -117,7 +110,8 @@ app.directive("sortClauseBuilder", function ($compile) {
 
                 // Call this after SetDefaults to load the html tag values for the given record type.
                 scope.reLoadClauses = function (selattrlstr, fbobject) {
-
+					console.log('reLoadClauses: ');
+				
                     console.log('reLoadClauses: input: selattrlstr: ' + selattrlstr);
 
                     var selattrChunks = selattrlstr.split(",");
@@ -163,7 +157,8 @@ app.directive("sortClauseBuilder", function ($compile) {
 
                 // Currrently, only used on prefs screen.
                 scope.reLoadClausesFromUrl = function (urllstr, fbobject) {
-
+					console.log('reLoadClausesFromUrl: ');
+					
                     // Thisw option for dev only.
                     if (urllstr == null || urllstr == '')
                         urllstr = this.getSortOrderClause();
@@ -207,7 +202,8 @@ app.directive("sortClauseBuilder", function ($compile) {
                 //
 
                 scope.getSortWithDirectionalFromModel = function (rootElementName) {
-
+					console.log('getSortWithDirectionalFromModel: rootElementName:' + rootElementName);
+					
                     var whereItem = '';
 
                     var questvalue = 'cbrow' + rootElementName;
@@ -225,6 +221,8 @@ app.directive("sortClauseBuilder", function ($compile) {
 
                 // Currrently, only used on prefs screen.
                 scope.getSortOrderClauseFromModel = function () {
+					console.log('getSortOrderClauseFromModel: ');
+					
                     var whereItem = '';
                     var sl = '';
                     var wi = '';
