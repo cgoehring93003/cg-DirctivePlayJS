@@ -35,7 +35,9 @@ var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
         console.log('$stateChangeStart to ' + toState.to + '- fired when the transition begins. toState,toParams : \n', toState, toParams);
     });
 		  
-		  
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        console.log('$stateChangeStart to ' + toState.to + '- fired when the transition begins. toState,toParams : \n', toState, toParams);
+    });		  
 		  
 
 });

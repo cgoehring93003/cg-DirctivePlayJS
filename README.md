@@ -13,6 +13,6 @@ big practice project I was on for a while. Still working on it.   Going to small
 
 ## License
 
-[CC0-1.0](./LICENSE).
+MIT
 
 

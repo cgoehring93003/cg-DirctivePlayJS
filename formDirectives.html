@@ -49,7 +49,6 @@
     <button ui-sref="editAddress({id: 2})" class="btn btn-primary">edit 2</button>	
     <button ui-sref="editAddress({id: 3})" class="btn btn-primary">edit 3</button>
     <button ui-sref="editAddress({id: star.recno})" class="btn btn-primary">edit 3</button>
-
 	
     <button ui-sref="about" class="btn btn-danger">about</button>
 </div>
@@ -111,14 +110,12 @@
 				<a class='iconButton' href='' ng-click='fc.deleteRecord()' ><i tooltips tooltip-template="Delete record" class="glyphicon glyphicon-trash fa-2x"  ></i> </a>				
 				
 				<a class='iconButton' href='' ng-click='fc.next()' ><i  tooltips tooltip-template="Move forward one record" class="fa fa-hand-o-right fa-2x"></i> </a>
-				
-				
-				
+			
 			</div>
 			<div class='recordCounter' >
 				<p style='padding:10px;' >Record: {{recno + 1}} of {{data.length}}</p>
 			</div>			
-			
+
 			
 			<!-- start of builder demo -->			
 			<input id="orderClause" type="hidden" value="">
@@ -146,21 +143,7 @@
 							<button name='bgetSortOrderClauseFromModel' id='bgetSortOrderClauseFromModel' ng-click="SortBuilder.getSortOrderClauseFromModel()">getSortOrderClauseFromModel</button>	
 							<button id="shoparammodal" ng-click="fc.showparm()">showparm modal</button>
 							<button name='bshowparm' id='bshowparmmodal' ng.click="fc.showparm()">bshowparmmodal</button>
-							
-							
-							<button name='btheDirFn' id='btheDirFn' ng-click="SortBuilder.theDirFn()">theDirFn</button>	
-							<button name='bsetFn' id='bsetFn' ng-click="SortBuilder.setFn()">setFn</button>		
-							<button name='bset-fn' id='bset-fn' ng-click="SortBuilder.set-fn()">set-fn</button>								
-							<button name='bdirectiveFn' id='bdirectiveFn' ng-click="SortBuilder.directiveFn()">directiveFn</button>	
-							<button name='bexternalCall' id='bexternalCall' ng-click="SortBuilder.externalCall()">externalCall</button>	
-														
-							
-							<button name='bfctheDirFn' id='bfctheDirFn' ng-click="fc.theDirFn()">theDirFn</button>	
-							<button name='bfcsetFn' id='bfcsetFn' ng-click="fc.setFn()">setFn</button>		
-							<button name='bfcset-fn' id='bfcset-fn' ng-click="fc.set-fn()">set-fn</button>								
-							<button name='bfcdirectiveFn' id='bfcdirectiveFn' ng-click="fc.directiveFn()">directiveFn</button>	
-							<button name='bfcexternalCall' id='bfcexternalCall' ng-click="fc.externalCall()">externalCall</button>	
-														
+													
 						</td>
 					</tr>
 					<tr>
@@ -251,8 +234,6 @@
 		<div class='datagrid' ng-controller="formController as fmc">		
 			<div my-table></div>
 		</div>
-
-        <input class="btn btn-danger btn-lg" type="button" ng-click="getAllInvoices()" value="getAllInvoices"  />
 
 
 </body>
