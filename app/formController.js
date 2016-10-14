@@ -1,5 +1,5 @@
 
-	function formController($stateParams, $location, recno){
+	function formController($stateParams, $location, record){
 		var vm = this;	
 		
 		vm.rating = 42; 			
@@ -62,6 +62,17 @@
 		vm.load = function() {
 			vm.record = xdata[vm.recno];	
 		};	
+		
+		vm.getById = function(id) {
+			for(var i = 0; i < xdata.length; i++) {
+				if(id === xdata[i].recno) {
+					vm.record = xdata[i]
+					return vm.record;
+				}
+					
+			}
+			return;
+		};		
 		
 		vm.loadById = function(id) {
 			for(var i = 0; i < xdata.length; i++) {
