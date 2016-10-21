@@ -1,13 +1,18 @@
 
-	function formController($stateParams, $location, record){
+	function formController($state, $stateParams, $location, addressService){
 		var vm = this;	
 		
-		vm.rating = 42; 			
+		vm.addressService = addressService;
+		vm.recordCount = 0; 			
 		vm.recno = 0;	
 		vm.record = {};		
-		vm.data = xdata;
-	
-	
+		
+		
+		vm.getCount = function() {
+			vm.recordCount = vm.addressService.getCount();
+		};			
+		
+	/*
 		vm.showparm = function() {
 			console.log('showparm called');
 		};	
@@ -39,6 +44,9 @@
 			
 			vm.load();
 		};
+	
+		
+		
 		
 		vm.newRecord = function() {
 			xdata.push(vm.blankObject);
@@ -63,6 +71,24 @@
 			vm.record = xdata[vm.recno];	
 		};	
 		
+		vm.loadRecord = function() {
+			vm.recno = xdata[vm.recno];	
+		};		
+		vm.getAddress = function(id) {
+			vm.recno =id;
+			addressService.getAddress(id).then(
+				function successCallback(response) {
+					console.log('success');
+					vm.record = response;
+					vm.load();
+				}, function errorCallback(response) {
+					console.log('load failed');
+				});			
+
+			return; 
+		};		
+		
+		
 		vm.getById = function(id) {
 			for(var i = 0; i < xdata.length; i++) {
 				if(id === xdata[i].recno) {
@@ -85,12 +111,16 @@
 			}
 			return;
 		};
+		*/
+		vm.getCount();
 		
-		vm.record = xdata[0];	
+		//vm.record = xdata[0];	
 		
     }
 //'rnStepper', 
-   myApp.controller('formController', [formController]);
+//   myApp.controller('formController', ['$state', '$stateParams', '$location', 'record', 'addressService', formController]);
+
+   myApp.controller('formController', formController);
 
  
 

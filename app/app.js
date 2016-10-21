@@ -2,8 +2,11 @@
 
 var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
 
-.config(function($stateProvider, $urlRouterProvider) {
-    
+.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+ 
+
+	$locationProvider.html5Mode(false);
+ 
     $urlRouterProvider.otherwise('/home');
     
     $stateProvider
@@ -11,16 +14,28 @@ var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
             url: '/home',
             templateUrl: 'templates/home.html'
         })
-        .state('editAddress', {
+		.state('edit', {
             url: '/edit/:id',
-			controller: 'formController as fmc',
-            templateUrl: 'templates/editAddressForm.html',
+			controller: 'recordController as rc',
+			templateUrl: 'templates/editAddressForm.html',
 			resolve: {
-				record: function(id) {
-					return fmc.getById(id);
+				recordx: function ($stateParams, addressService ) {
+				   return addressService.getAddress($stateParams.id);
+				},
+				
+				
+			}
+		})	
+		.state('all', {
+            url: '/all',
+			controller: 'recordListController as rlc',
+			templateUrl: 'templates/addresses.html',
+			resolve: {
+				records: function (addressService ) {
+				   return addressService.getAddresses();
 				}
 			}
-        })       
+		})		
         .state('about', {
             url: '/about',
             templateUrl: 'templates/about.html' 
@@ -30,16 +45,24 @@ var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
 
 
 .run(function($rootScope) {
+  $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+    console.log('$stateChangeError - fired when an error occurs during transition.');
+    //console.log(arguments);
 
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-        console.log('$stateChangeStart to ' + toState.to + '- fired when the transition begins. toState,toParams : \n', toState, toParams);
-    });		  
-    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-        console.log('$stateChangeSuccess to ' + toState.to + '- fired when the transition begins. toState,toParams : \n', toState, toParams);
-    });		  
+    console.log('arguments: ' + error);
+    console.log('arguments: ' + toParams);
+    console.log('arguments: ' + fromParams);
+
+  });
+  
+  $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+    console.log('$stateChangeSuccess to ' + toState.name + ' - fired once the state transition is complete.');
+
+    console.log('arguments: toParams: ' + JSON.stringify(toParams));
+
+  });
 
 });
-	
 
 
 	

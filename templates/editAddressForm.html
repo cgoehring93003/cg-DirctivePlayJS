@@ -1,65 +1,57 @@
 
 	<form class='inputForm' name="editAddressForm"  novalidate>
-		<h4 class='inputFormSubTitle' >Addresses of the Stars</h4>
+		<h4 class='majorSubTitle' >Addresses of the Stars (Edit)</h4>
 	
 		<fieldset  class='inputFormFieldset>
 
 			<div id='centerableTopPart'>
 				<div class='inputGroup'>
 					<label>First Name:</label>
-					<input type='text' name='firstName' ng-model='fmc.record.firstName' required />
+					<input type='text' name='firstName' ng-model='rc.record.firstName' required />
 						<i ng-show='addressForm.firstName.$touched && !addressForm.firstName.$valid' class="fa fa-thumbs-down fa-1x"></i>
 				</div>
 				<div class='inputGroup'>
 					<label>Last Name:</label>
-					<input type='text' name='lastName' ng-model='fmc.record.lastName' required />
+					<input type='text' name='lastName' ng-model='rc.record.lastName' required />
 						<i ng-show='addressForm.lastName.$touched && !addressForm.lastName.$valid' class="fa fa-thumbs-down fa-1x"></i>				
 				</div>	
 				
 				<div class='inputGroup'>
 					<label>Address:</label>
-					<input type='text' name='address' ng-model='fmc.record.address' required />
+					<input type='text' name='address' ng-model='rc.record.address' required />
 						<i ng-show='addressForm.address.$touched && !addressForm.address.$valid' class="fa fa-thumbs-down fa-1x"></i>				
 				</div>
 
 				<div class='inputGroup'>
 					<label>City:</label>
-					<!-- works	-->	
-					<input type='text' name='city' ng-model='fc.record.city' required ng-pattern='/^Beverly/' />				
-					
-
+					<input type='text' name='city' ng-model='rc.record.city' required />				
 						<i ng-show='addressForm.city.$touched && !addressForm.city.$valid' class="fa fa-thumbs-down fa-1x"></i>	
-					<span ng-show="addressForm.city.$error.pattern">Not a valid name </span>
-	
 				</div>
 				
 				<div class='inputGroup'>
 					<label>State:</label>
-					<input type='text' name='state' ng-model='fmc.record.state' required />
+					<input type='text' name='state' ng-model='rc.record.state' required />
 						<i ng-show='addressForm.state.$touched && !addressForm.state.$valid' class="fa fa-thumbs-down fa-1x"></i>				
 				</div>	
 				
 				<div class='inputGroup'>
 					<label>Zip:</label>
-					<input type='text' name='zip' ng-model='fmc.record.zip' required />
+					<input type='text' name='zip' ng-model='rc.record.zip' required />
 					<i ng-show='addressForm.zip.$touched && !addressForm.zip.$valid' class="fa fa-thumbs-down fa-1x"></i>
 				</div>
 			
 			</div>
 			<br />
 			<div style="text-align:center;">
-			
-				<a class='iconButton' href='' ng-click='fmc.previous()'><i tooltips tooltip-template="Back up one record" class="fa fa-hand-o-left fa-2x"  ></i> </a>
-				<a class='iconButton' href='' ng-click='fmc.newRecord()'><i tooltips tooltip-template="Create new record" class="glyphicon glyphicon-plus fa-2x"  ></i> </a>
-				<a class='iconButton' href='' ng-click='fmc.save()' ><i tooltips tooltip-template="Save record" class="glyphicon glyphicon-save fa-2x"  ></i> </a>	
-				<a class='iconButton' href='' ng-click='fmc.deleteRecord()' ><i tooltips tooltip-template="Delete record" class="glyphicon glyphicon-trash fa-2x"  ></i> </a>				
-				
-				<a class='iconButton' href='' ng-click='fmc.next()' ><i  tooltips tooltip-template="Move forward one record" class="fa fa-hand-o-right fa-2x"></i> </a>
-				
-				
-				
+				<a class='iconButton' href='' ng-click='rc.previous()'><i tooltips tooltip-template="Back up one record" class="fa fa-hand-o-left fa-2x"  ></i> </a>
+				<a class='iconButton' href='' ng-click='rc.newRecord()'><i tooltips tooltip-template="Create new record" class="glyphicon glyphicon-plus fa-2x"  ></i> </a>
+				<a class='iconButton' href='' ng-click='rc.save()' ><i tooltips tooltip-template="Save record" class="glyphicon glyphicon-save fa-2x"  ></i> </a>	
+				<a class='iconButton' href='' ng-click='rc.deleteRecord()' ><i tooltips tooltip-template="Delete record" class="glyphicon glyphicon-trash fa-2x"  ></i> </a>				
+				<a class='iconButton' href='' ng-click='rc.next()' ><i  tooltips tooltip-template="Move forward one record" class="fa fa-hand-o-right fa-2x"></i> </a>	
 			</div>
 			<div class='recordCounter' >
-				<p style='padding:10px;' >Record: {{recno + 1}} of {{data.length}}</p>
+				<p style='padding:10px;' >Record: {{rc.recno + 1}} of {{data.length}}</p>
 			</div>			
-			
+
+		</fieldset>		
+	</form>

@@ -1,31 +1,33 @@
-<div>
-<p>MyTable directive vvvvv</p>
-<br /><table style="width: 1200px;" >
+<div id='addressGrid'>
+	<h4 class='majorSubTitle' >Addresses of the Stars</h4>
+	<br />
 
-            <tr>
+	<table style="width: 1200px;" >
 
-                <th>recno</th>
-                <th>firstName</th>
-                <th>lastName</th>
-                <th>address</th>
-                <th>city</th>
-                <th>state</th>				
-                <th>zip</th>				
-				
-            </tr>
+		<tr>
+
+			<th>recno</th>
+			<th>firstName</th>
+			<th>lastName</th>
+			<th>address</th>
+			<th>city</th>
+			<th>state</th>				
+			<th>zip</th>				
+			
+		</tr>
 
 
-            <tr ng-repeat="star in fmc.data" ng-class-even="'evenrow'" ng-class-odd="'oddrow'" >
+		<tr ng-repeat="star in rlc.records" ng-class-even="'evenrow'" ng-class-odd="'oddrow'" >
 
-                <td><a ng-click="fmc.editRecord(fmc.data[4])">{{star.recno}}</a></td>				
-                <td>{{star.firstName}}</td>
-                <td>{{star.lastName}}</td>
-                <td>{{star.address}}</td>
-                <td>{{star.city}}</td>
-                <td>{{star.state}}</td>			
-	            <td>{{star.zip}}</td>	
-				
-            </tr>
-        </table>
+			<td><a ui-sref="edit({id: star.recno})" class="btn btn-small">{{star.recno}}</a></td>				
+			<td>{{star.firstName}}</td>
+			<td>{{star.lastName}}</td>
+			<td>{{star.address}}</td>
+			<td>{{star.city}}</td>
+			<td>{{star.state}}</td>			
+			<td>{{star.zip}}</td>	
+			
+		</tr>
+	</table>
 		
-		</div>
+</div>

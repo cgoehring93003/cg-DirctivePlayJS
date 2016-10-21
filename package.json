@@ -1,0 +1,18 @@
+{
+  "name": "directivePlay",
+  "version": "1.0.0",
+  "description": "directives",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "directives"
+  },
+  "keywords": [
+    "directives"
+  ],
+  "author": "Chuck Goehring",
+  "license": "MIT"
+}

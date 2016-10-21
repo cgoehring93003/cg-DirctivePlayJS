@@ -1,13 +1,50 @@
-<html>
+<html ng-app="myApp">
 <head>
-	<title > DirectivePlay</title
+	<title>index.html</title>
+
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />	
+	<link src="bower_components/bootstrap/dist/js/bootstrap/js/bootstrap.min.js" />			
+	<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />	
+	<link rel="stylesheet" href="bower_components/angular-tooltips/dist/angular-tooltips.min.css" />	
+	<link rel="stylesheet/less" type="text/css" href="css\style.less" />
+	
+	<script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/less/dist/less.min.js" type="text/javascript"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>		
+	<script src='bower_components/angular-tooltips/dist/angular-tooltips.min.js' type="text/JavaScript"></script>	
+	
+	<script type="text/JavaScript" src='app\app.js'></script>	
+	<script type="text/JavaScript" src='app\addressService.js'></script>	
+	<script type="text/JavaScript" src='app\formDirectives.js'></script>		
+	<script type="text/JavaScript" src='app\formController.js'></script>
+	<script type="text/JavaScript" src='app\recordController.js'></script>
+	<script type="text/JavaScript" src='app\recordListController.js'></script>	
+	
 </head>
-<body>
-	<h3>Hello</h3>
+<body >
+
+<div class="jumbotron text-center" >
+    <h2>Enter the SPA</h2>
+	<br />
+	<div ng-controller='formController as fmc'>
+
 	
-	<p>Will be adding links here once this is up.</p>
-	<a href='https://ChuckGoehring.github.io/DirectivePlay' ></a>
+	</div>
 	
 	
+    <a ui-sref="home" class="btn btn-primary">home</a>
+    <a ui-sref="about" class="btn btn-default">about</a>	
+	
+    <a ui-sref="edit({id: 1})" class="btn btn-default">edit 1</a>	
+    <a ui-sref="edit({id: 2})" class="btn btn-default">edit 2</a>	
+    <a ui-sref="edit({id: 3})" class="btn btn-default">edit 3</a>
+    <a ui-sref="all" class="btn btn-default">All</a>
+</div>
+
+      <div id='uiv' ui-view></div>
+
 </body>
 </html>
