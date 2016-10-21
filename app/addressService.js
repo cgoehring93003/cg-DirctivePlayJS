@@ -69,12 +69,6 @@ myApp.factory('addressService', function ($timeout, $q) {
 		getCount: getCount		
 	}
 
-	function getAddresses() {
-		 var def = $q.defer();
-		 def.resolve(xdata);
-		 return def.promise;
-	}
-
 	function getById(id) {
 		for(var i = 0; i < xdata.length; i++) {
 			if(id === xdata[i].recno) {
@@ -89,14 +83,20 @@ myApp.factory('addressService', function ($timeout, $q) {
 	function getCount() {
 		return xdata.length;
 	}  
-
+	
+	function getAddresses() {
+		 var def = $q.defer();
+		 def.resolve(xdata);
+		 return def.promise;
+	}
+	
+	
 	function getAddress(id) {
-		console.log('getAddress: id: ' + id);
-		  
+		console.log('getAddress: id: ' + id);  
 		var def = $q.defer();
 
 		$timeout(function() {
-			def.resolve(_.findWhere(xdata, {recno: id}))
+			def.resolve(_.findWhere(xdata, {recno: id * 1}))  // * for casting
 		}, 0)// set to 1000 to watch the resolve wait a sec before setting the first state
 		
 		return def.promise;

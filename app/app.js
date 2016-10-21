@@ -13,6 +13,7 @@ var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
         .state('home', {
             url: '/home',
             templateUrl: 'templates/home.html'
+			
         })
 		.state('edit', {
             url: '/edit/:id',
@@ -22,8 +23,9 @@ var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
 				recordx: function ($stateParams, addressService ) {
 				   return addressService.getAddress($stateParams.id);
 				},
-				
-				
+				recordid:function ($stateParams) {
+				   return $stateParams.id;
+				},
 			}
 		})	
 		.state('all', {

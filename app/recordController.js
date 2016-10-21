@@ -1,10 +1,15 @@
 
-function recordController(recordx){
+// This controller is used for managing record in the edit template.
+
+function recordController(recordx, recordid){
 	var vm = this;	
 
 	vm.recordCount = 0; 			
-	vm.recno = 0;	
-	vm.record = {};
+	
+	vm.record = recordx;
+	vm.recno = recordx.recno;	
+	vm.recno2 = recordid;
+	
 	
 	vm.load = function() {
 		vm.record = xdata[vm.recno];	
@@ -18,7 +23,6 @@ function recordController(recordx){
 	if(recordx) {
 		vm.record = recordx;
 		vm.recno = vm.record.recno;		
-		//vm.loadRecord();
 
 	} else {
 		vm.record =  {

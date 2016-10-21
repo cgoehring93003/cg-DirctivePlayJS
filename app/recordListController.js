@@ -1,13 +1,13 @@
 
+// This controller is for loading the list of records to the grid.
+
 function recordListController(records){
 	var vm = this;	
 			
 
-	//if(records) {
-		vm.records = records;
-	//} 
+	vm.records = records;
 
-		
+	
 		
 }
 	
