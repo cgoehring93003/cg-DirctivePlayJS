@@ -10,10 +10,10 @@ Still in work.  Some bugs to finish.
 
 
 
-See results at https://cgoehring93003.github.io/DirectivePlayJS/#/all
+See results at https://cgoehring93003.github.io/cg-DirectivePlayJS/#/all
 
 
-<a hrf='https://cgoehring93003.github.io/DirectivePlayJS/#/all' >link</a>
+<a hrf='https://cgoehring93003.github.io/cg-DirectivePlayJS/#/all' >link</a>
 
 ## License
 
