@@ -1,5 +1,6 @@
-
-	<form class='inputForm' name="editAddressForm"  novalidate>
+<div>
+ form-horizontal
+	<form class='inputForm' name="addressForm"  id="REQUEST_FORM_ID"  ng-submit='rc.save(addressForm.$valid)' novalidate>
 		<h4 class='majorSubTitle' >Addresses of the Stars (Edit)</h4>
 	
 		<fieldset  class='inputFormFieldset>
@@ -10,6 +11,7 @@
 					<input type='text' name='firstName' ng-model='rc.record.firstName' required />
 						<i ng-show='addressForm.firstName.$touched && !addressForm.firstName.$valid' class="fa fa-thumbs-down fa-1x"></i>
 				</div>
+
 				<div class='inputGroup'>
 					<label>Last Name:</label>
 					<input type='text' name='lastName' ng-model='rc.record.lastName' required />
@@ -40,18 +42,18 @@
 					<i ng-show='addressForm.zip.$touched && !addressForm.zip.$valid' class="fa fa-thumbs-down fa-1x"></i>
 				</div>
 			
-			</div>
-			<br />
-			<div style="text-align:center;">
-				<a class='iconButton' href='' ng-click='rc.previous()'><i tooltips tooltip-template="Back up one record" class="fa fa-hand-o-left fa-2x"  ></i> </a>
-				<a class='iconButton' href='' ng-click='rc.newRecord()'><i tooltips tooltip-template="Create new record" class="glyphicon glyphicon-plus fa-2x"  ></i> </a>
-				<a class='iconButton' href='' ng-click='rc.save()' ><i tooltips tooltip-template="Save record" class="glyphicon glyphicon-save fa-2x"  ></i> </a>	
-				<a class='iconButton' href='' ng-click='rc.deleteRecord()' ><i tooltips tooltip-template="Delete record" class="glyphicon glyphicon-trash fa-2x"  ></i> </a>				
-				<a class='iconButton' href='' ng-click='rc.next()' ><i  tooltips tooltip-template="Move forward one record" class="fa fa-hand-o-right fa-2x"></i> </a>	
-			</div>
-			<div class='recordCounter' >
-				<p style='padding:10px;' >Record: {{rc.recno + 1}} of {{data.length}}</p>
-			</div>			
 
+
+				<div style="text-align: right;">Valid: 
+						<i style="padding-right: 5px;" ng-show='addressForm.$valid' class="fa fa-thumbs-up fa-1x"></i>					
+						<i style="padding-right: 5px;" ng-show='!addressForm.$valid' class="fa fa-thumbs-down fa-1x"></i>
+				</div>
+
+
+
+			</div>
+	
 		</fieldset>		
 	</form>
+	<br /><h3>editAddressForm.html</h3>
+</div>

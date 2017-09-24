@@ -63,43 +63,118 @@ myApp.factory('addressService', function ($timeout, $q) {
 
 
 	return {
-		getById: getById,
-		getAddresses: getAddresses,
-		getAddress: getAddress,
-		getCount: getCount		
-	}
+		//getById: getById,
+    addAddress: addAddress, 
+		deleteAddress: deleteAddress,
 
-	function getById(id) {
-		for(var i = 0; i < xdata.length; i++) {
-			if(id === xdata[i].recno) {
-				record = xdata[i]
-				return record;
-			}
-				
-		}
-		return;
-	};	  
-	
-	function getCount() {
-		return xdata.length;
-	}  
+    getAddresses: getAddresses,
+    getAddress: getAddress,   
+    getCount: getCount,      
+    next: next,
+    previous: previous,
+		runTests: runTests,
+		updateAddress: updateAddress	
+	}
 	
 	function getAddresses() {
-		 var def = $q.defer();
+		 /*var def = $q.defer();
 		 def.resolve(xdata);
-		 return def.promise;
+		 return def.promise; */
+     console.log(JSON.stringify(xdata));
+
+     return xdata;
 	}
 	
 	
-	function getAddress(id) {
-		console.log('getAddress: id: ' + id);  
+	function getAddress(therecno) {
+		console.log('getAddress: therecno: ' + therecno);  
+    /*
 		var def = $q.defer();
 
-		$timeout(function() {
-			def.resolve(_.findWhere(xdata, {recno: id * 1}))  // * for casting
-		}, 0)// set to 1000 to watch the resolve wait a sec before setting the first state
+		def.resolve(_.findWhere(xdata, {recno: id * 1}));
+		
+		//$timeout(function() {
+		//	def.resolve(_.findWhere(xdata, {recno: id * 1}))  // * for casting
+		//}, 0); // set to 1000 to watch the resolve wait a sec before setting the first state
 		
 		return def.promise;
+*/
+
+    var itemref = _.findWhere(xdata, {recno: therecno});
+
+    if(itemref) {
+
+      return itemref;
+    } else {
+
+      var xitemref = _.findWhere(xdata, {recno: therecno - 0});
+
+      if(xitemref) {
+        return xitemref;
+      }
+
+    }
+
 	}
+
+	function next(therecno) {
+		if(therecno < _.max(xdata, function(stooge){ return stooge.recno }).recno) 
+			return getAddress(++therecno);
+
+	}
+
+	function previous(therecno) {
+		if(therecno > -1) 
+			return getAddress(--therecno);
+
+	}
+
+  function deleteAddress(therecno) {
+    xdata.splice(therecno, 1);
+  } 
+	
+  function runTests() {
+    angular.forEach(xdata, function(value, key) {
+      console.log("value: " + JSON.stringify(value));
+    });
+
+    console.log('themax: ' +  _.max(xdata, function(stooge){ return stooge.recno }).recno);
+  }
+
+  function addAddress(address) {
+    console.log('addAddress: address: ' + JSON.stringify(address));  
+
+    if(address.recno <= 0)
+      address.recno = _.max(xdata, function(stooge){ return stooge.recno }).recno;
+
+
+    xdata.push(address);
+  }
+
+  function updateAddress(address) {
+    console.log('updateAddress: address: ' + JSON.stringify(address));  
+
+    if(address.recno <= 0)
+      address.recno = _.max(xdata, function(stooge){ return stooge.recno }).recno + 1;
+
+    var itemref = _.findWhere(xdata, {recno: address.recno});
+
+    if(itemref) {
+
+      itemref.firstName = address.firstName;
+      itemref.lastname = address.lastname;
+      itemref.address = address.address;   
+      itemref.city = address.city;  
+      itemref.state = address.state;
+      itemref.zip = address.zip;
+    } else {
+      xdata.push(address);
+    }
+
+  }
+  
+  function getCount() {
+    return xdata.length;
+  } 
 
 });

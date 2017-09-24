@@ -5,6 +5,8 @@ ehthumbs.db
 # misc
 scratch.txt
 removed/
+support/
+bower_components/
 *.log
 
 # Folder config file

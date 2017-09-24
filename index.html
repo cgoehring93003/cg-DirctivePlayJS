@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="bower_components/angular-tooltips/dist/angular-tooltips.min.css" />	
 	<link rel="stylesheet/less" type="text/css" href="css\style.less" />
 	
-	<script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
+	<script src="bower_components/underscore/underscore-min.js" type="text/javascript"></script>
+	<!-- <script src="bower_components/lodash/dist/lodash.js" type="text/javascript"></script>	-->
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/less/dist/less.min.js" type="text/javascript"></script>
 	<script src="bower_components/angular/angular.js"></script>
@@ -17,34 +18,46 @@
 	<script src='bower_components/angular-tooltips/dist/angular-tooltips.min.js' type="text/JavaScript"></script>	
 	
 	<script type="text/JavaScript" src='app\app.js'></script>	
+	<script type="text/JavaScript" src='app\record.value.js'></script>	
 	<script type="text/JavaScript" src='app\addressService.js'></script>	
-	<script type="text/JavaScript" src='app\formDirectives.js'></script>		
-	<script type="text/JavaScript" src='app\formController.js'></script>
+	<script type="text/JavaScript" src='app\formDirectives.js'></script>
+	<script type="text/JavaScript" src='app\submitController.js'></script>
+	<script type="text/JavaScript" src='app\listController.js'></script>	
 	<script type="text/JavaScript" src='app\recordController.js'></script>
-	<script type="text/JavaScript" src='app\recordListController.js'></script>	
-	
+
 </head>
-<body >
+<body  ng-controller='submitController as sc'>
 
 <div class="jumbotron text-center" >
     <h2>Enter the SPA</h2>
-	<br />
-	<div ng-controller='formController as fmc'>
-
-	
-	</div>
-	
+		<br />
 	
     <a ui-sref="home" class="btn btn-primary">home</a>
     <a ui-sref="about" class="btn btn-default">about</a>	
 	
-    <a ui-sref="edit({id: 1})" class="btn btn-default">edit 1</a>	
-    <a ui-sref="edit({id: 2})" class="btn btn-default">edit 2</a>	
-    <a ui-sref="edit({id: 3})" class="btn btn-default">edit 3</a>
+    <a ui-sref="edit({recno: 1})" class="btn btn-default">edit 1</a>	
+    <a ui-sref="edit({recno: 2})" class="btn btn-default">edit 2</a>	
+    <a ui-sref="edit({recno: 3})" class="btn btn-default">edit 3</a>
     <a ui-sref="all" class="btn btn-default">All</a>
 </div>
 
-      <div id='uiv' ui-view></div>
+
+<div id='uiv' ui-view></div>
+
+<div>
+	<br />
+	<div style="text-align:center;">
+		<a class='iconButton' ng-click="sc.previous()" ><i tooltips tooltip-template="Back up one record" class="fa fa-hand-o-left fa-2x"  ></i> </a>
+		<a class='iconButton' ng-click="sc.newRecord()" ><i tooltips tooltip-template="Create new record" class="glyphicon glyphicon-plus fa-2x"  ></i> </a>
+		<a class='iconButton' ng-click="sc.save()" ><i tooltips tooltip-template="Save record" class="glyphicon glyphicon-save fa-2x"  ></i> </a>	
+		<a class='iconButton' ng-click="sc.deleteRecord()" ><i tooltips tooltip-template="Delete record" class="glyphicon glyphicon-trash fa-2x"  ></i> </a>				
+		<a class='iconButton' ng-click="sc.next()"  ><i  tooltips tooltip-template="Move forward one record" class="fa fa-hand-o-right fa-2x"></i> </a>	
+		<a class='iconButton' ng-click="sc.runTests()" ><i tooltips tooltip-template="runTests" class="glyphicon glyphicon-ok-circle fa-2x"  ></i> </a>	
+	</div>
+		
+
+</div>					
+		
 
 </body>
 </html>

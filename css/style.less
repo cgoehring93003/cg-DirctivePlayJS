@@ -18,6 +18,10 @@
 @overallWidth: 525px;
 @topWidth: 525 - 90px;
 
+@xinvalid: #FA787E;
+@xvalid: #78FA89;
+
+
 body{
 	font-family: Verdana, Geneva, sans-serif;
 	background-color: lightblue;
@@ -52,7 +56,7 @@ body{
 .majorSubTitle{
 	margin-top: 10px;
 	margin-left: 10px;
-	margin-bottom: 10px;	
+	margin-bottom: 20px;	
 	font-weight: bold; 
 	font-size: 160%;
 }
@@ -66,18 +70,16 @@ body{
 }
 
 input.ng-invalid.ng-touched {
-    background-color: #FA787E;
+    background-color: @xinvalid;    
 }
 
 input.ng-valid.ng-touched {
-    background-color: #78FA89;
+    background-color: @xvalid;
 }
-  
   
 .iconButton {
 	margin-left: 10px;
 	margin-right: 10px;
-
 }  
   
 a, a:hover .iconButton, a:visited .iconButton   {
@@ -85,7 +87,7 @@ a, a:hover .iconButton, a:visited .iconButton   {
 }
 
 #centerableTopPart {
-    background-color: lightblue;
+  background-color: lightblue;
 	width: @topWidth;
 	margin-left: auto; 
 	margin-right: auto;	
@@ -95,33 +97,42 @@ a, a:hover .iconButton, a:visited .iconButton   {
  	border-style: solid;
 }
 
-
 .evenrow {
   font-weight: bold;
   color: navy;
   background-color: lightblue;
-  border: 1px solid white;
+  border-style: solid white;   
+  border: 1px 0px 1px 0px; 
 }
+
 .oddrow {
   font-weight: bold;
   color: navy;
-  background-color: #99CCFF;
+  background-color: @lightbackground;
+  border-style: solid white;   
+  border: 1px 0px 1px 0px;   
 }
 
-
 .datagrid {
-
 	margin-left: auto;
 	margin-right: auto;	
+
 	width: 1250px;
 	text-align: center;
 	border-style: solid;
 	border-color: navy;
 	margin-top: 20px;
-	margin-lft: auto;
-	margin-right: auto;
 	margin-bottom: 20px;
-	
 }
 
+.grid_header {
+  color: navy;
+  /* background-color: white;  */
+  text-align: center;
+  font-weight: bold;  
+  /* 
+
+  border-style: solid white;   
+  border: 1px 0px 1px 0px;  */
+}
 

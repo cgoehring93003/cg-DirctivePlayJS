@@ -1,0 +1,44 @@
+<div>
+
+	<form class='inputForm' name="editAddressForm"  novalidate>
+		<h4 class='majorSubTitle' >Addresses of the Stars (Edit)</h4>
+	
+		<fieldset  class='inputFormFieldset>
+
+			<div id='centerableTopPart'>
+				<div class='inputGroup'>
+					<label>First Name:</label>
+					{{rc.record.firstName}}
+				</div>
+				<div class='inputGroup'>
+					<label>Last Name:</label>
+					{{rc.record.lastName}}			
+				</div>	
+				
+				<div class='inputGroup'>
+					<label>Address:</label>
+					{{rc.record.address}}			
+				</div>
+
+				<div class='inputGroup'>
+					<label>City:</label>
+					{{rc.record.city}}				
+				</div>
+				
+				<div class='inputGroup'>
+					<label>State:</label>
+					{{rc.record.state}}
+				</div>	
+				
+				<div class='inputGroup'>
+					<label>Zip:</label>
+					{{rc.record.zip}}
+				</div>
+			
+			</div>
+		<button class='btn btn-danger' ng-click='rc.deleteRecord()'>DELETE</button>
+
+		</fieldset>		
+	</form>
+	<br /><h3>confirmDeleteForm.html</h3>
+</div>

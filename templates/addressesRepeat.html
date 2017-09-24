@@ -14,9 +14,8 @@
 					<th>zip</th>				
 					
 				</tr>
-
-
-				<tr ng-repeat="star in fmc.data" ng-class-even="'evenrow'" ng-class-odd="'oddrow'">
+				
+				<tr ng-repeat="star in lc.data" ng-class-even="'evenrow'" ng-class-odd="'oddrow'">
 
 					<td><a ui-sref="/editAddress({id: star.recno})">{{star.recno}}</a></td>				
 					<td>{{star.firstName}}</td>
@@ -30,3 +29,4 @@
 			</table>
 		</div>
 		
+<br /><h3>addressRepeat.html</h3>

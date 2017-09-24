@@ -5,14 +5,14 @@
 	<table style="width: 1200px;" >
 
 		<tr>
-			<th>recno</th>
-			<th>firstName</th>
-			<th>lastName</th>
-			<th>address</th>
-			<th>city</th>
-			<th>state</th>				
-			<th>zip</th>				
-			
+			<th>RecNo</th>
+			<th>FirstName</th>
+			<th>LastName</th>
+			<th>Address</th>
+			<th>City</th>
+			<th>State</th>				
+			<th>Zip</th>				
+			<th>--</th>			
 		</tr>
 
 		<tr ng-repeat="star in rlc.records" ng-class-even="'evenrow'" ng-class-odd="'oddrow'" >
@@ -24,8 +24,8 @@
 			<td>{{star.city}}</td>
 			<td>{{star.state}}</td>			
 			<td>{{star.zip}}</td>	
-			
+			<td><edit-controls star='{{star.recno}}' ></edit-controls></td>  			
 		</tr>
 	</table>
-		
+	<br /><h3>myTableTemplate.html</h3>		
 </div>
