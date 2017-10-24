@@ -12,14 +12,7 @@ var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
     $stateProvider
         .state('home', {
             url: '/home',
-			controller: 'recordController as rc',
-            templateUrl: 'templates/home.html',
-			resolve: {
-				records: function ($stateParams, addressService ) {
-					return addressService.getAddresses();	     
-				}
-			}
-        })
+	  })
 		.state('edit', {
       url: '/edit/:recno',			
 			controller: 'recordController as rc',
@@ -43,21 +36,40 @@ var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
 				}
 			}
 		})
-
-		.state('deleteRecord', {
-            url: '/delete/:id',
+		.state('deleteRecordConfirmed', {
+            url: '/deleteConfirmed/:recno',
 			controller: 'recordController as rc',
 			templateUrl: 'templates/confirmDeleteForm.html',
 			resolve: {
 				record: function ($stateParams, addressService ) {
-					return addressService.getAddress($stateParams.id);	   
-				   
+					return addressService.deleteAddress($stateParams.recno);	   
+				}
+			}
+		})
+		.state('preDelete', {
+      url: '/preDelete/:recno',
+			controller: 'recordController as rc',
+			templateUrl: 'templates/confirmDeleteForm.html',
+			resolve: {
+				record: function ($stateParams, addressService ) {
+					return addressService.getAddress($stateParams.recno);	    
+				}
+			}
+		})	
+
+		.state('deleteRecord', {
+      url: '/delete/:recno',
+			controller: 'recordController as rc',
+			templateUrl: 'templates/confirmDeleteForm.html',
+			resolve: {
+				record: function ($stateParams, addressService ) {
+					return addressService.getAddress($stateParams.recno);	    
 				}
 			}
 		})	
 
 		.state('up', {
-            url: '/up/:id',
+      url: '/up/:id',
 			controller: 'recordController as rc',
 			templateUrl: 'templates/editAddressForm.html',
 			resolve: {
@@ -68,7 +80,7 @@ var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
 			}
 		})
 		.state('down', {
-            url: '/down/:id',
+      url: '/down/:id',
 			controller: 'recordController as rc',
 			templateUrl: 'templates/editAddressForm.html',
 			resolve: {
@@ -80,7 +92,7 @@ var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
 		})		
 
 		.state('all', {
-            url: '/all',
+      url: '/all',
 			//controller: 'recordListController as rlc',
 			controller: 'listController as lc',			
 			templateUrl: 'templates/addresses.html',
@@ -103,24 +115,26 @@ var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
 			}
 		})
 		.state('next', {
-            url: '/next/:id',
+            url: '/next/:recno',
 			controller: 'recordController as rc',
 			templateUrl: 'templates/editAddressForm.html',
 			resolve: {
 				record: function ($stateParams, addressService ) {
-					return addressService.getAddress($stateParams.id - 1);	   
-				   
+
+					return addressService.next($stateParams.recno);						
+			   
 				}
 			}
 		})
 
 		.state('previous', {
-            url: '/previous/:id',
+            url: '/previous/:recno',
 			controller: 'recordController as rc',
 			templateUrl: 'templates/editAddressForm.html',
 			resolve: {
 				record: function ($stateParams, addressService ) {
-					return addressService.getAddress($stateParams.id + 1);	   
+					
+					return addressService.previous($stateParams.recno);	   
 				   
 				}
 			}
@@ -173,13 +187,6 @@ var myApp = angular.module('myApp', ['ui.router', '720kb.tooltips'])
 	    console.log("state change start");
 	});
 
-
-
-/*
-	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){ 
-	    console.log("root change error");
-	});
-*/
 
 });
 

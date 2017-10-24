@@ -22,6 +22,7 @@
       vm.save=save;
       vm.deleteRecord=deleteRecord;
       vm.next=next;
+
       vm.runTests=runTests;
 
       function previous(formObjectIsValid) {
@@ -46,7 +47,7 @@
         console.log('submitController: ------>>>>>> deleteRecord:');
 
         $rootScope.$broadcast('deleteRecord', 'deleteRecord');
-      }
+      }   
 
       function next(formObjectIsValid) {
         console.log('submitController: ------>>>>>> next:');
@@ -60,37 +61,7 @@
         $rootScope.$broadcast('runTests', 'runTests');
       }
 
-
-/*
-        function saveToRequest(formObject) {
-
-            if (formObject.$dirty) {
-
-                if (!preSubmitFixups(formObject)) {
-                    alert('saveToRequest: Cannot save because the form is not valid.');
-                    return; // and add any error to the view if you want
-                }
-
-                if (formObject.$valid) {
-                    logger.log('saveToRequest: Proceeding with valid request item.', SHOW_TOAST);
-                } else {
-                    logger.log('saveToRequest: Attempted to submit invalid request item.', SHOW_TOAST);
-                    alert('saveToRequest: Cannot save because the form is not valid.');
-                    return; // and add any error to the view if you want
-                }
-
-                saveEdits("Provide tag for storage!", formObject);
-
-            } else {
-
-                newRecord(formObject);
-                return;
-            }
-
-        }
-*/
-
-  
+ 
     }
 })();
 

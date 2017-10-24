@@ -16,6 +16,7 @@
 		console.log('recordController start');
 
 		vm.record = record;
+		//vm.recno = recno;
 
 		console.log('recordController vm.record: ' + JSON.stringify(vm.record));
 
@@ -72,22 +73,7 @@
 
 		vm.addressService = addressService;	
 		vm.recordCount = vm.addressService.getCount();	
-				
-		/*
-		if(vm.record) {
-			;
-		} else {
-			vm.record =  {
-				"recno": 5,
-				"firstName" : "Nick",
-				"lastName" : "Nolte",	
-				"address" : "1020 Hollywood Blvd.",
-				"city" : "Beverly Hills",
-				"state" : "CA",	vm.record = 
-				"zip" : "90210"
-			  };
-		}
-*/
+
 		vm.runTests = function() {
       console.log('recordController: runTests:');			
 			addressService.runTests();
@@ -113,8 +99,6 @@
 
 			// here is where you would post to back-end
 
-			//if (dirty)
-			//	vm.save();
 			vm.record = new RecordModel();
 
     }
@@ -151,73 +135,13 @@
 
     }    
 
+
+
+    vm.deleteRecordConfirmed = function()
+    {
+    	vm.deleteRecord(vm.recno);
+
+    }
+
 	}
 })();
-
-
-
- 
-
-	/*
-
-	
-	vm.load = function() {
-		vm.record = xdata[vm.recno];	
-	}	
-	
-	vm.loadRecord = function() {
-		vm.recno = xdata[vm.recno];	
-	}		
-
-	vm.save = function() {
-		var recordto = vm.blankObject();
-		
-		angular.copy(vm.record, recordto);
-
-		//addressService.(
-
-	}	
-	
-	vm.editRecord = function(id) {
-		vm.recno = id;
-		vm.load();
-	}	
-	
-	vm.deleteRecord = function() {
-		
-		vm.load();
-	}
-	
-	vm.previous = function() {
-		if(vm.recno > 0) 
-			vm.recno--;
-		
-		vm.load();
-	}
-	
-	vm.next = function() {
-		if(vm.recno < xdata.length - 1) 			
-			vm.recno++;
-		
-		vm.load();
-	}
-
-	vm.newRecord = function() {
-		xdata.push(vm.blankObject);
-		
-		vm.recno = xdata.length;
-		vm.load();
-	}		
-	
-	vm.blankObject = function() {
-		return  {
-			"firstName" : "",
-			"lastName" : "",	
-			"address" : "",
-			"city" : "",
-			"state" : "",	
-			"zip" : ""
-		  };
-	
-	}		
-		*/

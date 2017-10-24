@@ -1,44 +1,70 @@
 <div>
-
-	<form class='inputForm' name="editAddressForm"  novalidate>
+ <!-- form-horizontal -->
+	<form class='inputForm' name="addressForm"  id="REQUEST_FORM_ID"  ng-submit='rc.save(addressForm.$valid)' novalidate>
 		<h4 class='majorSubTitle' >Addresses of the Stars (Edit)</h4>
 	
 		<fieldset  class='inputFormFieldset>
 
 			<div id='centerableTopPart'>
+
+				<div class='inputGroup'>
+					<label>recno:</label>
+					<label> {{rc.record.recno}} </label>
+				</div>
+
 				<div class='inputGroup'>
 					<label>First Name:</label>
-					{{rc.record.firstName}}
+					<input type='text' name='firstName' ng-model='rc.record.firstName' required />
+						<i ng-show='addressForm.firstName.$touched && !addressForm.firstName.$valid' class="fa fa-thumbs-down fa-1x"></i>
 				</div>
+
 				<div class='inputGroup'>
 					<label>Last Name:</label>
-					{{rc.record.lastName}}			
+					<input type='text' name='lastName' ng-model='rc.record.lastName' required />
+						<i ng-show='addressForm.lastName.$touched && !addressForm.lastName.$valid' class="fa fa-thumbs-down fa-1x"></i>				
 				</div>	
 				
 				<div class='inputGroup'>
 					<label>Address:</label>
-					{{rc.record.address}}			
+					<input type='text' name='address' ng-model='rc.record.address' required />
+						<i ng-show='addressForm.address.$touched && !addressForm.address.$valid' class="fa fa-thumbs-down fa-1x"></i>				
 				</div>
 
 				<div class='inputGroup'>
 					<label>City:</label>
-					{{rc.record.city}}				
+					<input type='text' name='city' ng-model='rc.record.city' required />				
+						<i ng-show='addressForm.city.$touched && !addressForm.city.$valid' class="fa fa-thumbs-down fa-1x"></i>	
 				</div>
 				
 				<div class='inputGroup'>
 					<label>State:</label>
-					{{rc.record.state}}
+					<input type='text' name='state' ng-model='rc.record.state' required />
+						<i ng-show='addressForm.state.$touched && !addressForm.state.$valid' class="fa fa-thumbs-down fa-1x"></i>				
 				</div>	
 				
 				<div class='inputGroup'>
 					<label>Zip:</label>
-					{{rc.record.zip}}
+					<input type='text' name='zip' ng-model='rc.record.zip' required />
+					<i ng-show='addressForm.zip.$touched && !addressForm.zip.$valid' class="fa fa-thumbs-down fa-1x"></i>
 				</div>
 			
-			</div>
-		<button class='btn btn-danger' ng-click='rc.deleteRecord()'>DELETE</button>
 
+
+				<div style="text-align: right;">Valid: 
+						<i style="padding-right: 5px;" ng-show='addressForm.$valid' class="fa fa-thumbs-up fa-1x"></i>					
+						<i style="padding-right: 5px;" ng-show='!addressForm.$valid' class="fa fa-thumbs-down fa-1x"></i>
+				</div>
+
+				<button ng-disabled="addressForm.$invalid" class='btn btn-danger' ng-click='rc.deleteRecordConfirmed(rc.recno)'>DELETE</button>
+
+			</div>
+	
 		</fieldset>		
 	</form>
 	<br /><h3>confirmDeleteForm.html</h3>
+
+
 </div>
+
+
+

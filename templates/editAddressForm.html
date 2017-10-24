@@ -6,6 +6,13 @@
 		<fieldset  class='inputFormFieldset>
 
 			<div id='centerableTopPart'>
+
+
+				<div class='inputGroup'>
+					<label>recno:</label>
+					<label> {{rc.record.recno}} </label>
+				</div>
+
 				<div class='inputGroup'>
 					<label>First Name:</label>
 					<input type='text' name='firstName' ng-model='rc.record.firstName' required />
@@ -49,7 +56,7 @@
 						<i style="padding-right: 5px;" ng-show='!addressForm.$valid' class="fa fa-thumbs-down fa-1x"></i>
 				</div>
 
-
+				<button ng-disabled="addressForm.$invalid" class='btn btn-danger' ng-click='rc.deleteRecordConfirmed(rc.record.recno)' >DELETE</button>
 
 			</div>
 	

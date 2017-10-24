@@ -85,20 +85,10 @@ myApp.factory('addressService', function ($timeout, $q) {
      return xdata;
 	}
 	
-	
+	//TODO: fix
+  // Once deletes are made, you can't sequentially move through records with this method.
 	function getAddress(therecno) {
 		console.log('getAddress: therecno: ' + therecno);  
-    /*
-		var def = $q.defer();
-
-		def.resolve(_.findWhere(xdata, {recno: id * 1}));
-		
-		//$timeout(function() {
-		//	def.resolve(_.findWhere(xdata, {recno: id * 1}))  // * for casting
-		//}, 0); // set to 1000 to watch the resolve wait a sec before setting the first state
-		
-		return def.promise;
-*/
 
     var itemref = _.findWhere(xdata, {recno: therecno});
 
@@ -130,7 +120,9 @@ myApp.factory('addressService', function ($timeout, $q) {
 	}
 
   function deleteAddress(therecno) {
-    xdata.splice(therecno, 1);
+
+    xdata = _.without(xdata, _.findWhere(xdata, {recno: therecno}));
+
   } 
 	
   function runTests() {

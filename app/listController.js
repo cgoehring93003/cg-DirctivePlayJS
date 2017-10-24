@@ -27,12 +27,9 @@
 			vm.goToLink = function(record) {
 				console.log('goToLink: record: ' + JSON.stringify(record));
 
-/*
-				$state.go('edit', {
-			    recno: star.recno //selectedItem and id is defined
-				}); */
+        var obj = { recno: record.recno };
 
-				$state.go('edit', record);
+				$state.go('edit', obj);
 
 			}
 	
